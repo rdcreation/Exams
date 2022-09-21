@@ -9,11 +9,11 @@ const auth = require('./auth');
 
 router
 
-    .post('/createQuestion', validateRole, question.createQuestion)
-    .put('/updatequestion/:id', validateRole, question.updateQuestionbyID)
-    .delete('/deleteQuestion/:id', validateRole, question.deleteQuestionbyID)
-    .get('/questions', validateRole, question.getquestions)
-    .get('/questions/:id', validateRole, question.getquestionsbyID)
+    .post('/createQuestion',auth.ensureToken, validateRole, question.createQuestion)
+    .put('/updatequestion/:id',auth.ensureToken, validateRole, question.updateQuestionbyID)
+    .delete('/deleteQuestion/:id',auth.ensureToken, validateRole, question.deleteQuestionbyID)
+    .get('/questions', validateRole,auth.ensureToken, question.getquestions)
+    .get('/questions/:id',auth.ensureToken, validateRole, question.getquestionsbyID)
 
     .post('/createUser', user.createUser)    
     .post('/login', auth.createToken)

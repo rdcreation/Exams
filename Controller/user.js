@@ -18,7 +18,7 @@ const createUser = async function (req, res) {
     res.send(response);
 
   }
-  catch (err) { console.log(err); res.send("Some error Occured while creataion of user") }
+  catch (err) { console.log(err);res.status(400); res.send({error:"User already exits"}) }
 }
 
 module.exports = { createUser };
